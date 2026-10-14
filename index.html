@@ -3,134 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Find your next favorite film with Bellamy's curated movie explorer."
-    />
-    <meta name="theme-color" content="#10100f" />
-    <title>Bellamy — Find your next favorite</title>
-    <link rel="preconnect" href="https://image.tmdb.org" />
+    <meta name="description" content="Discover and preview music with Bellamy, powered by Deezer." />
+    <meta name="theme-color" content="#11110f" />
+    <title>Bellamy — Music for the moment</title>
+    <link rel="preconnect" href="https://api.deezer.com" />
+    <link rel="preconnect" href="https://cdn-images.dzcdn.net" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
   </head>
   <body>
-    <header class="site-header">
-      <a class="wordmark" href="#" aria-label="Bellamy home">
-        <span class="wordmark-icon" aria-hidden="true">B</span>
-        bellamy<span class="wordmark-period">.</span>
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a class="nav-link is-active" href="#discover">Discover</a>
-        <a class="nav-link" href="#movie-grid" data-nav-filter="all">Movies</a>
-        <button class="nav-link watchlist-link" type="button" data-nav-filter="watchlist">
-          Watchlist <span class="watchlist-count" id="watchlist-count">0</span>
-        </button>
-      </nav>
-      <a class="header-note" href="#movie-grid">
-        <span class="status-dot" aria-hidden="true"></span>
-        Your next favorite is here
-      </a>
-    </header>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="Bellamy home">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>bellamy<span class="brand-dot">.</span></span>
+        </a>
+        <nav class="side-nav" aria-label="Main navigation">
+          <p class="nav-label">YOUR SPACE</p>
+          <button class="side-link is-active" type="button" data-view="discover">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" /></svg>
+            Discover
+          </button>
+          <button class="side-link" type="button" data-view="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.2 4.2" /></svg>
+            Search
+          </button>
+          <button class="side-link" type="button" data-view="favorites">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 4.2-8.8 10.2-8.8 10.2S3.2 13 3.2 8.8A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 8.8 1.6Z" /></svg>
+            Favorites <span class="favorite-count" id="favorite-count">0</span>
+          </button>
+        </nav>
+        <div class="sidebar-note">
+          <span class="note-spark" aria-hidden="true">✳</span>
+          <p>A good song can change the whole day.</p>
+          <span>KEEP LISTENING</span>
+        </div>
+        <div class="sidebar-footer"><span class="online-dot"></span> CONNECTED TO DEEZER</div>
+      </aside>
 
-    <main>
-      <section class="hero" id="discover" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-line"></span> A little cinema, a lot of feeling</p>
-          <h1 id="hero-title">Find your<br />next <span>favorite.</span></h1>
-          <p class="hero-description">
-            The good ones stay with you. Explore a handpicked collection of films worth your time.
-          </p>
-          <a class="hero-cta" href="#movie-grid">
-            Explore the collection <span aria-hidden="true">↘</span>
-          </a>
-          <div class="hero-footnote">
-            <div class="avatar-stack" aria-hidden="true">
-              <span>J</span><span>M</span><span>A</span>
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>YOUR SPACE</span><span class="crumb-slash">/</span><span id="current-view">DISCOVER</span></div>
+          <label class="search-bar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.2 4.2" /></svg>
+            <span class="sr-only">Search tracks, artists, and albums</span>
+            <input id="search-input" type="search" placeholder="Search tracks, artists, albums..." autocomplete="off" />
+            <span class="search-key" aria-hidden="true">↵</span>
+          </label>
+          <button class="profile-button" type="button" aria-label="Bellamy profile">B</button>
+        </header>
+
+        <section class="welcome" id="welcome">
+          <div class="welcome-text">
+            <p class="eyebrow"><span></span> YOUR DAILY SOUNDTRACK</p>
+            <h1>Find your<br />kind of <em>music.</em></h1>
+            <p class="welcome-copy">New discoveries, familiar favorites, and everything in between. Take a listen.</p>
+            <button class="primary-button" id="play-chart" type="button"><span aria-hidden="true">▶</span> Play the charts</button>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-halo"></div>
+            <div class="art-disc"><div class="disc-label"><span>side<br />A</span></div></div>
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <span class="art-star star-one">✳</span><span class="art-star star-two">✳</span>
+            <span class="art-caption">SOUND<br />IN MOTION</span>
+          </div>
+          <div class="welcome-foot"><span>01 — 03</span><span>MADE FOR THIS MOMENT</span></div>
+        </section>
+
+        <section class="music-section" aria-labelledby="section-title">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow section-eyebrow" id="section-kicker"><span></span> A LITTLE OF EVERYTHING</p>
+              <h2 id="section-title">The daily mix<span>.</span></h2>
             </div>
-            <span>For people who love a good story.</span>
+            <button class="text-button" id="refresh-button" type="button">Refresh picks <span aria-hidden="true">↗</span></button>
           </div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="hero-glow"></div>
-          <div class="hero-poster hero-poster-back">
-            <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" alt="" />
-          </div>
-          <div class="hero-poster hero-poster-front">
-            <img src="https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg" alt="" />
-          </div>
-          <div class="hero-caption">
-            <span class="caption-kicker">THE FRAME PICK</span>
-            <span class="caption-title">A story worth staying for.</span>
-          </div>
-          <span class="art-star art-star-one">✳</span>
-          <span class="art-star art-star-two">✳</span>
-        </div>
-        <div class="hero-index" aria-hidden="true"><span>01</span> / 04</div>
-      </section>
+          <div class="status-message" id="status-message" role="status" aria-live="polite">Finding your soundtrack...</div>
+          <div class="track-grid" id="track-grid"></div>
+        </section>
 
-      <section class="collection" id="movie-grid" aria-labelledby="collection-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow"><span class="eyebrow-line"></span> Curated for your next movie night</p>
-            <h2 id="collection-title">The collection<span class="heading-period">.</span></h2>
-          </div>
-          <label class="search-box">
-            <span class="sr-only">Search movies</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.8" cy="10.8" r="6.8"></circle>
-              <path d="m16 16 4.2 4.2"></path>
-            </svg>
-            <input id="search-input" type="search" placeholder="Find a film..." autocomplete="off" />
-            <span class="search-shortcut" aria-hidden="true">↵</span>
-          </label>
-        </div>
+        <footer class="main-footer">
+          <span>GOOD MUSIC FINDS ITS WAY.</span>
+          <a href="https://www.deezer.com/" target="_blank" rel="noreferrer">MUSIC DATA BY DEEZER ↗</a>
+        </footer>
+      </main>
+    </div>
 
-        <div class="collection-controls">
-          <div class="filter-list" id="genre-filters" role="group" aria-label="Filter by genre">
-            <button class="filter-chip is-selected" type="button" data-genre="All">All films</button>
-            <button class="filter-chip" type="button" data-genre="Drama">Drama</button>
-            <button class="filter-chip" type="button" data-genre="Sci-Fi">Sci-fi</button>
-            <button class="filter-chip" type="button" data-genre="Adventure">Adventure</button>
-            <button class="filter-chip" type="button" data-genre="Comedy">Comedy</button>
-          </div>
-          <label class="sort-control">
-            <span>Sort by</span>
-            <select id="sort-select" aria-label="Sort movies">
-              <option value="featured">Featured</option>
-              <option value="rating">Top rated</option>
-              <option value="year">Newest</option>
-              <option value="title">Title A–Z</option>
-            </select>
-          </label>
+    <footer class="player" aria-label="Music player">
+      <div class="now-playing">
+        <div class="now-cover" id="now-cover"><span>♪</span></div>
+        <div class="now-meta">
+          <span id="now-title">Pick a song to begin</span>
+          <span id="now-artist">Your next favorite is out there</span>
         </div>
-
-        <div class="results-line">
-          <p id="results-label" aria-live="polite">Showing all films</p>
-          <button class="clear-filters" id="clear-filters" type="button" hidden>Clear filters <span aria-hidden="true">×</span></button>
+        <button class="player-favorite" id="player-favorite" type="button" aria-label="Add current track to favorites" aria-pressed="false">♡</button>
+      </div>
+      <div class="player-controls">
+        <div class="control-buttons">
+          <button class="control-button" id="previous-button" type="button" aria-label="Previous track">|◀</button>
+          <button class="play-button" id="toggle-play" type="button" aria-label="Play preview" disabled>▶</button>
+          <button class="control-button" id="next-button" type="button" aria-label="Next track">▶|</button>
         </div>
-
-        <div class="movie-grid" id="movie-grid-content" aria-live="polite"></div>
-        <div class="empty-state" id="empty-state" hidden>
-          <span class="empty-icon" aria-hidden="true">✳</span>
-          <h3>No films found</h3>
-          <p>Try a different title or clear your filters to start fresh.</p>
-          <button class="hero-cta" id="empty-reset" type="button">Show all films <span aria-hidden="true">↗</span></button>
+        <div class="timeline">
+          <span id="elapsed-time">0:00</span>
+          <input id="progress" type="range" min="0" max="30" value="0" aria-label="Preview position" disabled />
+          <span>0:30</span>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <a class="wordmark footer-wordmark" href="#" aria-label="Bellamy home">
-        <span class="wordmark-icon" aria-hidden="true">B</span>
-        bellamy<span class="wordmark-period">.</span>
-      </a>
-      <p>Good stories deserve a good frame.</p>
-      <span class="footer-credit">MADE FOR THE LOVE OF FILM <span>✳</span></span>
+      </div>
+      <div class="player-extra">
+        <span class="preview-label"><span></span> 30 SEC PREVIEW</span>
+        <button class="volume-button" id="mute-button" type="button" aria-label="Mute audio">◖))</button>
+        <input id="volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume" />
+      </div>
     </footer>
-
-    <dialog class="movie-dialog" id="movie-dialog" aria-labelledby="dialog-title">
-      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close movie details">×</button>
-      <div class="dialog-content" id="dialog-content"></div>
-    </dialog>
+    <audio id="audio-player" preload="none"></audio>
   </body>
 </html>

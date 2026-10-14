@@ -1,382 +1,347 @@
-const movies = [
-  {
-    id: "dune-part-two",
-    title: "Dune: Part Two",
-    year: 2024,
-    rating: 8.5,
-    runtime: "2h 46m",
-    genres: ["Sci-Fi", "Adventure"],
-    tag: "Bellamy pick",
-    director: "Denis Villeneuve",
-    poster: "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-    overview:
-      "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family.",
-  },
-  {
-    id: "past-lives",
-    title: "Past Lives",
-    year: 2023,
-    rating: 7.9,
-    runtime: "1h 46m",
-    genres: ["Drama", "Romance"],
-    tag: "A quiet favorite",
-    director: "Celine Song",
-    poster: "https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg",
-    overview:
-      "Two deeply connected childhood friends are wrested apart after one family's emigration from South Korea. Years later, they reconnect for one fateful week.",
-  },
-  {
-    id: "spider-verse",
-    title: "Across the Spider-Verse",
-    year: 2023,
-    rating: 8.6,
-    runtime: "2h 20m",
-    genres: ["Animation", "Adventure"],
-    tag: "A visual feast",
-    director: "Joaquim Dos Santos",
-    poster: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-    overview:
-      "Miles Morales catapults across the multiverse, where he encounters a team of Spider-People charged with protecting its existence.",
-  },
-  {
-    id: "poor-things",
-    title: "Poor Things",
-    year: 2023,
-    rating: 7.8,
-    runtime: "2h 21m",
-    genres: ["Drama", "Sci-Fi"],
-    tag: "Wonderfully weird",
-    director: "Yorgos Lanthimos",
-    poster: "https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-    overview:
-      "The incredible tale and fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant Dr. Godwin Baxter.",
-  },
-  {
-    id: "everything-everywhere",
-    title: "Everything Everywhere All at Once",
-    year: 2022,
-    rating: 7.8,
-    runtime: "2h 20m",
-    genres: ["Sci-Fi", "Adventure"],
-    tag: "Big-hearted chaos",
-    director: "Daniel Kwan & Daniel Scheinert",
-    poster: "https://image.tmdb.org/t/p/w500/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg",
-    overview:
-      "An exhausted Chinese American woman gets swept up in an insane adventure where she alone can save the world by exploring other universes.",
-  },
-  {
-    id: "barbie",
-    title: "Barbie",
-    year: 2023,
-    rating: 7.0,
-    runtime: "1h 54m",
-    genres: ["Comedy", "Adventure"],
-    tag: "Pink, with a point",
-    director: "Greta Gerwig",
-    poster: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
-    overview:
-      "Barbie and Ken are having the time of their lives in the colorful, seemingly perfect world of Barbie Land—until a trip to the real world changes everything.",
-  },
-  {
-    id: "the-batman",
-    title: "The Batman",
-    year: 2022,
-    rating: 7.7,
-    runtime: "2h 56m",
-    genres: ["Drama", "Adventure"],
-    tag: "After dark",
-    director: "Matt Reeves",
-    poster: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-    overview:
-      "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption.",
-  },
-  {
-    id: "interstellar",
-    title: "Interstellar",
-    year: 2014,
-    rating: 8.7,
-    runtime: "2h 49m",
-    genres: ["Sci-Fi", "Drama"],
-    tag: "Worth the rewatch",
-    director: "Christopher Nolan",
-    poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-    overview:
-      "A team of explorers travels beyond this galaxy to discover whether mankind has a future among the stars.",
-  },
-  {
-    id: "wonka",
-    title: "Wonka",
-    year: 2023,
-    rating: 7.1,
-    runtime: "1h 56m",
-    genres: ["Comedy", "Adventure"],
-    tag: "Pure imagination",
-    director: "Paul King",
-    poster: "https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg",
-    overview:
-      "With a head full of dreams, young chocolatier Willy Wonka manages to change the world, one delectable bite at a time.",
-  },
-  {
-    id: "oppenheimer",
-    title: "Oppenheimer",
-    year: 2023,
-    rating: 8.1,
-    runtime: "3h 00m",
-    genres: ["Drama"],
-    tag: "A monumental story",
-    director: "Christopher Nolan",
-    poster: "https://image.tmdb.org/t/p/w500/ptpr0kGAckfQkJeJIt8st5dglvd.jpg",
-    overview:
-      "The story of J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II.",
-  },
-  {
-    id: "little-women",
-    title: "Little Women",
-    year: 2019,
-    rating: 7.9,
-    runtime: "2h 15m",
-    genres: ["Drama", "Romance"],
-    tag: "A warm-hearted classic",
-    director: "Greta Gerwig",
-    poster: "https://image.tmdb.org/t/p/w500/yn5ihODtZ7ofn8pDYfxCmxh8AXI.jpg",
-    overview:
-      "Four sisters come of age in America in the aftermath of the Civil War, each determined to live life on her own terms.",
-  },
-  {
-    id: "knives-out",
-    title: "Knives Out",
-    year: 2019,
-    rating: 7.8,
-    runtime: "2h 11m",
-    genres: ["Comedy", "Drama"],
-    tag: "Cleverly crafted",
-    director: "Rian Johnson",
-    poster: "https://image.tmdb.org/t/p/w500/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
-    overview:
-      "A detective investigates the death of a patriarch at a family gathering where everyone is a suspect.",
-  },
-];
-
-const storageKey = "frame-watchlist";
-const grid = document.querySelector("#movie-grid-content");
+const API_BASE = "https://api.deezer.com";
+const trackGrid = document.querySelector("#track-grid");
 const searchInput = document.querySelector("#search-input");
-const sortSelect = document.querySelector("#sort-select");
-const filters = document.querySelector("#genre-filters");
-const resultsLabel = document.querySelector("#results-label");
-const clearFiltersButton = document.querySelector("#clear-filters");
-const emptyState = document.querySelector("#empty-state");
-const watchlistCount = document.querySelector("#watchlist-count");
-const dialog = document.querySelector("#movie-dialog");
-const dialogContent = document.querySelector("#dialog-content");
-const dialogClose = document.querySelector("#dialog-close");
+const statusMessage = document.querySelector("#status-message");
+const sectionTitle = document.querySelector("#section-title");
+const sectionKicker = document.querySelector("#section-kicker");
+const currentView = document.querySelector("#current-view");
+const welcome = document.querySelector("#welcome");
+const audio = document.querySelector("#audio-player");
+const progress = document.querySelector("#progress");
+const elapsedTime = document.querySelector("#elapsed-time");
+const playButton = document.querySelector("#toggle-play");
+const favoriteButton = document.querySelector("#player-favorite");
+const favoriteCount = document.querySelector("#favorite-count");
+const nowCover = document.querySelector("#now-cover");
+const nowTitle = document.querySelector("#now-title");
+const nowArtist = document.querySelector("#now-artist");
+const favoritesKey = "bellamy-favorites";
 
-let activeGenre = "All";
-let showingWatchlist = false;
+let currentTracks = [];
+let activeTrackIndex = -1;
+let isFavoritesView = false;
+let searchTimer;
+let requestNumber = 0;
 
-function loadWatchlist() {
+function readFavoriteTracks() {
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    return new Set(Array.isArray(saved) ? saved.filter((id) => typeof id === "string") : []);
+    const parsed = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
+    const savedTracks = Array.isArray(parsed)
+      ? parsed.filter((track) => track && Number.isInteger(track.id) && typeof track.title === "string")
+      : [];
+    return new Map(savedTracks.map((track) => [track.id, track]));
   } catch (error) {
-    console.error("Unable to load the saved watchlist.", error);
-    return new Set();
+    console.error("Unable to read saved favorites.", error);
+    return new Map();
   }
 }
 
-let watchlist = loadWatchlist();
+const favoriteTracks = readFavoriteTracks();
+const favorites = new Set(favoriteTracks.keys());
 
-function saveWatchlist() {
+function saveFavorites() {
   try {
-    localStorage.setItem(storageKey, JSON.stringify([...watchlist]));
+    localStorage.setItem(favoritesKey, JSON.stringify([...favoriteTracks.values()]));
   } catch (error) {
-    console.error("Unable to save the watchlist.", error);
+    console.error("Unable to save favorites.", error);
+    setStatus("Your browser couldn't save favorites. Check its storage settings.");
   }
+}
+
+function deezerJsonp(path, params = {}) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `__bellamyDeezer${Date.now()}${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement("script");
+    const url = new URL(path, API_BASE);
+    Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
+    url.searchParams.set("output", "jsonp");
+    url.searchParams.set("callback", callbackName);
+
+    const timeout = window.setTimeout(() => finish(new Error("Deezer took too long to respond.")), 12000);
+
+    function finish(error, data) {
+      window.clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+      if (error) reject(error);
+      else if (data?.error) reject(new Error(data.error.message || "Deezer couldn't complete this request."));
+      else resolve(data);
+    }
+
+    window[callbackName] = (data) => finish(null, data);
+    script.onerror = () => finish(new Error("Couldn't reach Deezer. Check your connection and try again."));
+    script.src = url.toString();
+    document.head.append(script);
+  });
+}
+
+function setStatus(message, isError = false) {
+  statusMessage.textContent = message;
+  statusMessage.classList.toggle("is-error", isError);
+  statusMessage.hidden = false;
+}
+
+function renderFavoritesCount() {
+  favoriteCount.textContent = String(favorites.size);
+}
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const wholeSeconds = Math.floor(seconds);
+  return `${Math.floor(wholeSeconds / 60)}:${String(wholeSeconds % 60).padStart(2, "0")}`;
 }
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (character) => {
-    const entities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;",
-    };
-    return entities[character];
-  });
+  return String(value).replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[character]);
 }
 
-function getVisibleMovies() {
-  const query = searchInput.value.trim().toLowerCase();
-  let visibleMovies = movies.filter((movie) => {
-    const matchesGenre = activeGenre === "All" || movie.genres.includes(activeGenre);
-    const matchesQuery =
-      !query ||
-      `${movie.title} ${movie.year} ${movie.genres.join(" ")} ${movie.director}`
-        .toLowerCase()
-        .includes(query);
-    const matchesWatchlist = !showingWatchlist || watchlist.has(movie.id);
-    return matchesGenre && matchesQuery && matchesWatchlist;
-  });
+function renderTracks(tracks) {
+  const playable = tracks.filter((track) => track && track.id && track.preview);
+  currentTracks = playable;
+  trackGrid.replaceChildren();
+  statusMessage.hidden = playable.length > 0;
 
-  switch (sortSelect.value) {
-    case "rating":
-      visibleMovies = [...visibleMovies].sort((a, b) => b.rating - a.rating);
-      break;
-    case "year":
-      visibleMovies = [...visibleMovies].sort((a, b) => b.year - a.year);
-      break;
-    case "title":
-      visibleMovies = [...visibleMovies].sort((a, b) => a.title.localeCompare(b.title));
-      break;
-    default:
-      break;
-  }
-  return visibleMovies;
-}
-
-function updateWatchlistCount() {
-  watchlistCount.textContent = String(watchlist.size);
-}
-
-function renderMovies() {
-  const visibleMovies = getVisibleMovies();
-  const searchTerm = searchInput.value.trim();
-  const filtersAreActive = activeGenre !== "All" || Boolean(searchTerm) || showingWatchlist;
-  resultsLabel.textContent = showingWatchlist
-    ? `Your watchlist · ${visibleMovies.length} ${visibleMovies.length === 1 ? "film" : "films"}`
-    : filtersAreActive
-      ? `${visibleMovies.length} ${visibleMovies.length === 1 ? "film" : "films"} found`
-      : `Showing all ${movies.length} films`;
-  clearFiltersButton.hidden = !filtersAreActive;
-  grid.hidden = visibleMovies.length === 0;
-  emptyState.hidden = visibleMovies.length > 0;
-  grid.innerHTML = visibleMovies
-    .map((movie) => {
-      const saved = watchlist.has(movie.id);
-      const genreLabel = movie.genres.join(" · ");
-      return `
-        <article class="movie-card">
-          <div class="poster-wrap">
-            <img class="movie-poster" src="${escapeHtml(movie.poster)}" alt="${escapeHtml(`${movie.title} poster`)}" loading="lazy" />
-            <div class="poster-topline">
-              <span class="card-tag">${escapeHtml(movie.tag)}</span>
-              <button class="save-button${saved ? " is-saved" : ""}" type="button" data-save="${escapeHtml(movie.id)}" aria-label="${saved ? "Remove" : "Add"} ${escapeHtml(movie.title)} ${saved ? "from" : "to"} watchlist" aria-pressed="${saved}">${saved ? "♥" : "♡"}</button>
-            </div>
-            <div class="poster-rating"><span class="rating-star" aria-hidden="true">★</span>${movie.rating.toFixed(1)}</div>
-          </div>
-          <div class="movie-info">
-            <div class="movie-meta"><span>${movie.year}</span><span class="movie-meta-dot"></span><span>${escapeHtml(movie.runtime)}</span></div>
-            <button class="movie-title" type="button" data-details="${escapeHtml(movie.id)}">${escapeHtml(movie.title)}</button>
-            <div class="movie-card-genres">${escapeHtml(genreLabel)}</div>
-          </div>
-        </article>`;
-    })
-    .join("");
-  updateWatchlistCount();
-}
-
-function toggleWatchlist(id) {
-  if (watchlist.has(id)) {
-    watchlist.delete(id);
-  } else {
-    watchlist.add(id);
-  }
-  saveWatchlist();
-  renderMovies();
-  if (dialog.open && dialog.dataset.movieId === id) {
-    openMovieDetails(id);
-  }
-}
-
-function openMovieDetails(id) {
-  const movie = movies.find((item) => item.id === id);
-  if (!movie) return;
-  const saved = watchlist.has(movie.id);
-  dialog.dataset.movieId = movie.id;
-  dialogContent.innerHTML = `
-    <img class="dialog-poster" src="${escapeHtml(movie.poster)}" alt="${escapeHtml(`${movie.title} poster`)}" />
-    <div class="dialog-copy">
-      <p class="eyebrow"><span class="eyebrow-line"></span> ${escapeHtml(movie.tag)}</p>
-      <h2 id="dialog-title">${escapeHtml(movie.title)}</h2>
-      <div class="dialog-meta">
-        <span>${movie.year}</span><span>${escapeHtml(movie.runtime)}</span>
-        <span><span class="rating-star" aria-hidden="true">★</span>${movie.rating.toFixed(1)}</span>
-        <span>${escapeHtml(movie.genres.join(" · "))}</span>
-      </div>
-      <p class="dialog-overview">${escapeHtml(movie.overview)}</p>
-      <p class="dialog-meta">Directed by ${escapeHtml(movie.director)}</p>
-      <button class="hero-cta dialog-save" type="button" data-save="${escapeHtml(movie.id)}" aria-pressed="${saved}">
-        <span aria-hidden="true">${saved ? "♥" : "♡"}</span> ${saved ? "In your watchlist" : "Add to watchlist"}
-      </button>
-    </div>`;
-  if (!dialog.open) dialog.showModal();
-}
-
-function clearFilters() {
-  activeGenre = "All";
-  showingWatchlist = false;
-  searchInput.value = "";
-  filters.querySelectorAll("[data-genre]").forEach((button) => {
-    button.classList.toggle("is-selected", button.dataset.genre === "All");
-  });
-  document.querySelectorAll("[data-nav-filter]").forEach((link) => {
-    link.classList.toggle("is-active", link.dataset.navFilter === "all");
-  });
-  renderMovies();
-}
-
-filters.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-genre]");
-  if (!button) return;
-  activeGenre = button.dataset.genre;
-  showingWatchlist = false;
-  filters.querySelectorAll("[data-genre]").forEach((filter) => {
-    filter.classList.toggle("is-selected", filter === button);
-  });
-  document.querySelectorAll("[data-nav-filter]").forEach((link) => link.classList.remove("is-active"));
-  document.querySelector(".main-nav .nav-link:not([data-nav-filter])").classList.add("is-active");
-  renderMovies();
-});
-
-searchInput.addEventListener("input", renderMovies);
-sortSelect.addEventListener("change", renderMovies);
-clearFiltersButton.addEventListener("click", clearFilters);
-document.querySelector("#empty-reset").addEventListener("click", clearFilters);
-
-document.querySelectorAll("[data-nav-filter]").forEach((link) => {
-  link.addEventListener("click", () => {
-    showingWatchlist = link.dataset.navFilter === "watchlist";
-    activeGenre = "All";
-    filters.querySelectorAll("[data-genre]").forEach((button) => {
-      button.classList.toggle("is-selected", button.dataset.genre === "All");
-    });
-    document.querySelectorAll("[data-nav-filter]").forEach((item) => {
-      item.classList.toggle("is-active", item === link);
-    });
-    document.querySelector(".main-nav .nav-link:not([data-nav-filter])").classList.toggle("is-active", !showingWatchlist);
-    renderMovies();
-  });
-});
-
-grid.addEventListener("click", (event) => {
-  const saveButton = event.target.closest("[data-save]");
-  if (saveButton) {
-    toggleWatchlist(saveButton.dataset.save);
+  if (!playable.length) {
+    setStatus(isFavoritesView
+      ? "No favorites yet. Save a song with the heart button and it will show up here."
+      : "No tracks found. Try another search.");
     return;
   }
-  const detailsButton = event.target.closest("[data-details]");
-  if (detailsButton) openMovieDetails(detailsButton.dataset.details);
+
+  trackGrid.innerHTML = playable.map((track, index) => {
+    const saved = favorites.has(track.id);
+    const cover = track.album?.cover_medium || track.album?.cover || "";
+    return `
+      <article class="track-card" style="--card-index:${index}">
+        <div class="cover-wrap">
+          <img class="track-cover" src="${escapeHtml(cover)}" alt="${escapeHtml(`${track.album?.title || track.title} album cover`)}" loading="lazy" />
+          <button class="cover-play" type="button" data-play="${index}" aria-label="Play ${escapeHtml(track.title)} preview">▶</button>
+          <button class="track-favorite${saved ? " is-saved" : ""}" type="button" data-favorite="${track.id}" aria-label="${saved ? "Remove" : "Add"} ${escapeHtml(track.title)} ${saved ? "from" : "to"} favorites" aria-pressed="${saved}">${saved ? "♥" : "♡"}</button>
+          <span class="cover-index">${String(index + 1).padStart(2, "0")}</span>
+        </div>
+        <div class="track-info">
+          <button class="track-name" type="button" data-play="${index}">${escapeHtml(track.title)}</button>
+          <span class="track-artist">${escapeHtml(track.artist?.name || "Unknown artist")}</span>
+          <div class="track-card-bottom"><span>${escapeHtml(track.album?.title || "Single")}</span><span>${formatTime(track.duration)}</span></div>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+async function loadChart() {
+  const request = ++requestNumber;
+  isFavoritesView = false;
+  welcome.hidden = false;
+  sectionTitle.innerHTML = "The daily mix<span>.</span>";
+  sectionKicker.innerHTML = "<span></span> A LITTLE OF EVERYTHING";
+  currentView.textContent = "DISCOVER";
+  setStatus("Finding your soundtrack...");
+  try {
+    const result = await deezerJsonp("/chart/0/tracks", { limit: "12" });
+    if (request !== requestNumber) return;
+    renderTracks(result.data || []);
+  } catch (error) {
+    if (request !== requestNumber) return;
+    console.error("Deezer chart request failed.", error);
+    trackGrid.replaceChildren();
+    setStatus(`${error.message} You can retry in a moment.`, true);
+  }
+}
+
+async function searchTracks(query) {
+  const request = ++requestNumber;
+  const cleanQuery = query.trim();
+  isFavoritesView = false;
+  welcome.hidden = true;
+  sectionTitle.innerHTML = "Search results<span>.</span>";
+  sectionKicker.innerHTML = "<span></span> FIND YOUR NEXT FAVORITE";
+  currentView.textContent = "SEARCH";
+  if (!cleanQuery) {
+    loadChart();
+    return;
+  }
+  setStatus(`Searching Deezer for “${cleanQuery}”...`);
+  try {
+    const result = await deezerJsonp("/search", { q: cleanQuery, limit: "12" });
+    if (request !== requestNumber) return;
+    renderTracks(result.data || []);
+  } catch (error) {
+    if (request !== requestNumber) return;
+    console.error("Deezer search failed.", error);
+    trackGrid.replaceChildren();
+    setStatus(`${error.message} Check your connection and try again.`, true);
+  }
+}
+
+function showFavorites() {
+  requestNumber++;
+  isFavoritesView = true;
+  welcome.hidden = true;
+  currentView.textContent = "FAVORITES";
+  sectionTitle.innerHTML = "Your favorites<span>.</span>";
+  sectionKicker.innerHTML = "<span></span> SAVED FOR LATER";
+  const savedTracks = [...favorites].map((id) => favoriteTracks.get(id)).filter(Boolean);
+  if (savedTracks.length) {
+    renderTracks(savedTracks);
+    return;
+  }
+  trackGrid.replaceChildren();
+  setStatus(favorites.size
+    ? "Favorites from another session aren't loaded yet. Search for a track to save it again."
+    : "No favorites yet. Save a song with the heart button and it will show up here.");
+}
+
+function updatePlayer() {
+  const track = currentTracks[activeTrackIndex];
+  if (!track) return;
+  nowTitle.textContent = track.title;
+  nowArtist.textContent = track.artist?.name || "Unknown artist";
+  const cover = track.album?.cover_small || track.album?.cover_medium || "";
+  nowCover.innerHTML = cover ? `<img src="${escapeHtml(cover)}" alt="" />` : "<span>♪</span>";
+  playButton.disabled = false;
+  progress.disabled = false;
+  favoriteButton.disabled = false;
+  favoriteButton.textContent = favorites.has(track.id) ? "♥" : "♡";
+  favoriteButton.classList.toggle("is-saved", favorites.has(track.id));
+  favoriteButton.setAttribute("aria-pressed", String(favorites.has(track.id)));
+  favoriteButton.setAttribute("aria-label", `${favorites.has(track.id) ? "Remove" : "Add"} ${track.title} ${favorites.has(track.id) ? "from" : "to"} favorites`);
+}
+
+async function playTrack(index) {
+  const track = currentTracks[index];
+  if (!track?.preview) {
+    setStatus("A preview isn't available for this track.", true);
+    return;
+  }
+  if (activeTrackIndex === index && !audio.paused) {
+    audio.pause();
+    return;
+  }
+  activeTrackIndex = index;
+  updatePlayer();
+  audio.src = track.preview;
+  audio.currentTime = 0;
+  try {
+    await audio.play();
+  } catch (error) {
+    console.error("Audio preview could not be played.", error);
+    setStatus("This preview couldn't be played. Try another track.", true);
+  }
+}
+
+function toggleFavorite(trackId) {
+  const id = Number(trackId);
+  if (favorites.has(id)) {
+    favorites.delete(id);
+    favoriteTracks.delete(id);
+  } else {
+    const track = currentTracks.find((item) => item.id === id);
+    if (!track) return;
+    favorites.add(id);
+    favoriteTracks.set(id, track);
+  }
+  saveFavorites();
+  renderFavoritesCount();
+  if (isFavoritesView) {
+    showFavorites();
+  } else {
+    renderTracks(currentTracks);
+  }
+  updatePlayer();
+}
+
+document.querySelector(".side-nav").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-view]");
+  if (!button) return;
+  document.querySelectorAll(".side-link").forEach((item) => {
+    item.classList.toggle("is-active", item === button);
+  });
+  if (button.dataset.view === "favorites") {
+    showFavorites();
+  } else if (button.dataset.view === "search") {
+    searchInput.focus();
+  } else {
+    searchInput.value = "";
+    loadChart();
+  }
 });
 
-dialogContent.addEventListener("click", (event) => {
-  const saveButton = event.target.closest("[data-save]");
-  if (saveButton) toggleWatchlist(saveButton.dataset.save);
+searchInput.addEventListener("input", () => {
+  window.clearTimeout(searchTimer);
+  searchTimer = window.setTimeout(() => searchTracks(searchInput.value), 350);
 });
 
-dialogClose.addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", (event) => {
-  if (event.target === dialog) dialog.close();
+trackGrid.addEventListener("click", (event) => {
+  const favorite = event.target.closest("[data-favorite]");
+  if (favorite) {
+    toggleFavorite(favorite.dataset.favorite);
+    return;
+  }
+  const play = event.target.closest("[data-play]");
+  if (play) playTrack(Number(play.dataset.play));
 });
 
-renderMovies();
+favoriteButton.addEventListener("click", () => {
+  const track = currentTracks[activeTrackIndex];
+  if (track) toggleFavorite(track.id);
+});
+
+document.querySelector("#play-chart").addEventListener("click", () => {
+  if (currentTracks.length) playTrack(0);
+  else loadChart();
+});
+document.querySelector("#refresh-button").addEventListener("click", loadChart);
+document.querySelector("#previous-button").addEventListener("click", () => {
+  if (currentTracks.length) playTrack((activeTrackIndex - 1 + currentTracks.length) % currentTracks.length);
+});
+document.querySelector("#next-button").addEventListener("click", () => {
+  if (currentTracks.length) playTrack((activeTrackIndex + 1) % currentTracks.length);
+});
+playButton.addEventListener("click", () => {
+  if (activeTrackIndex < 0) return;
+  if (audio.paused) audio.play().catch((error) => console.error("Audio preview could not be resumed.", error));
+  else audio.pause();
+});
+
+audio.addEventListener("play", () => {
+  playButton.textContent = "Ⅱ";
+  playButton.setAttribute("aria-label", "Pause preview");
+});
+audio.addEventListener("pause", () => {
+  playButton.textContent = "▶";
+  playButton.setAttribute("aria-label", "Play preview");
+});
+audio.addEventListener("timeupdate", () => {
+  progress.value = String(Math.min(audio.currentTime, 30));
+  elapsedTime.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("ended", () => {
+  progress.value = "0";
+  elapsedTime.textContent = "0:00";
+});
+audio.addEventListener("error", () => {
+  if (audio.src) setStatus("Deezer couldn't load this preview. Try another track.", true);
+});
+progress.addEventListener("input", () => {
+  if (Number.isFinite(audio.duration)) audio.currentTime = Number(progress.value);
+});
+document.querySelector("#volume").addEventListener("input", (event) => {
+  audio.volume = Number(event.target.value);
+  document.querySelector("#mute-button").setAttribute("aria-label", audio.volume === 0 ? "Unmute audio" : "Mute audio");
+});
+document.querySelector("#mute-button").addEventListener("click", (event) => {
+  audio.muted = !audio.muted;
+  event.currentTarget.setAttribute("aria-label", audio.muted ? "Unmute audio" : "Mute audio");
+  event.currentTarget.classList.toggle("is-muted", audio.muted);
+});
+
+audio.volume = 0.8;
+favoriteButton.disabled = true;
+renderFavoritesCount();
+loadChart();
